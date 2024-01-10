@@ -21,6 +21,7 @@ class AbstractEndpoint:
         queryset = self.get_all(params)
         for query in queryset:
             if query.get('id') == str(item) or query.get('name') == item:
+                print(query)
                 return query
             
         return None

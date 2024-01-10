@@ -7,13 +7,23 @@ class AccessGroup(AbstractEndpoint):
     def get_all(self):
         return super().get_all()
     
-    def get(self, access_group_id):
+    """
+        Contraitement à la plupart des autres endpoints de l'api Biostar2
+        AccessGroup possède une vue qui permet de récupérer une instance en fournissant directement son id.
+        Mais il peut être nécessaire de récupérer un AccessGroup par son nom.
+        Ainsi on garde la méthode get classique de AbstractEndpoint, mais on implémente ce quick_get qui permet
+        de récupérer une instance précise sans effectuer de boucle sur l'ensemble du queryset d'AccessGroup
+    """
+    def quick_get(self, access_group_id):
         return self.biostar2.get(
             f'{self.endpoint}/{access_group_id}',
             headers={
                 'bs-session-id': self.biostar2.user.session_id
             }
         )
+    
+    def get(self, access_group):
+        return super().get(access_group)
     
     def get_users(self, access_group_id):
         return self.biostar2.get(
