@@ -22,8 +22,8 @@ class AccessGroup(AbstractEndpoint):
             }
         )
     
-    def get(self, access_group):
-        return super().get(access_group)
+    def get(self, access_group, params=''):
+        return super().get(access_group, params)
     
     def get_users(self, access_group_id):
         return self.biostar2.get(

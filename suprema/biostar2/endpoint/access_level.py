@@ -7,7 +7,7 @@ class AccessLevel(AbstractEndpoint):
     def get_all(self, limit=50, offset=0, order_by_id=False):
         return super().get_all(params=f'limit={limit}&offset={offset}&order_by=id:{order_by_id}')
     
-    def get(self, access_level):
+    def get(self, access_level, params=''):
         return super().get(item=access_level, params='limit=0&offset=0&order_by=id:True')
     
     def create(self, name, description=None, access_level_items=None):
