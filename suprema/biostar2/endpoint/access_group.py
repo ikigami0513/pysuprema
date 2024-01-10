@@ -4,7 +4,7 @@ class AccessGroup(AbstractEndpoint):
     collection = 'AccessGroupCollection'
     endpoint = 'api/access_groups'
 
-    def get_all(self):
+    def get_all(self, params=''):
         return super().get_all()
     
     """
