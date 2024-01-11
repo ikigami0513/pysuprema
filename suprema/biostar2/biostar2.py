@@ -20,7 +20,8 @@ class Biostar2:
             Authorization: Authorization(self),
             UserGroup: UserGroup(self),
             AccessLevel: AccessLevel(self),
-            AccessGroup: AccessGroup(self)
+            AccessGroup: AccessGroup(self),
+            Card: Card(self)
         }
 
         login_id = kwargs.pop('login_id', None)
@@ -28,7 +29,7 @@ class Biostar2:
         if login_id is not None and password is not None:
             self.user = self.endpoint(Authorization).login(login_id=login_id, password=password)
 
-    def endpoint(self, type) -> AbstractEndpoint:
+    def endpoint(self, type: Type) -> AbstractEndpoint:
         return self.__endpoint.get(type)
         
     def get(self, endpoint, headers={}, params=None):

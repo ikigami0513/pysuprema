@@ -8,12 +8,15 @@ class AbstractEndpoint:
     def __init__(self, biostar2):
         self.biostar2 = biostar2
 
+    def init_headers(self):
+        return {
+            'bs-session-id': self.biostar2.user.session_id
+        }
+
     def get_all(self, params=''):
         data = self.biostar2.get(
             f'{self.endpoint}?{params}',
-            headers={
-                'bs-session-id': self.biostar2.user.session_id
-            }
+            headers=self.init_headers()
         )
         return data.get(self.collection).get('rows')
     
@@ -28,9 +31,7 @@ class AbstractEndpoint:
     def create(self, data):
         return self.biostar2.post(
             self.endpoint,
-            headers={
-                'bs-session-id': self.biostar2.user.session_id
-            },
+            headers=self.init_headers(),
             data=json.dumps(data)
         )
     
@@ -40,9 +41,7 @@ class AbstractEndpoint:
 
         return self.biostar2.put(
             f'{self.endpoint}/{item.get("id")}',
-            headers={
-                'bs-session-id'
-            },
+            headers=self.init_headers(),
             data=json.dumps(data)
         )
     
@@ -52,7 +51,5 @@ class AbstractEndpoint:
 
         return self.biostar2.delete(
             f'{self.endpoint}?id={item.get("id")}',
-            headers={
-                'bs-session-id': self.biostar2.user.session_id
-            }
+            headers=self.init_headers()
         )

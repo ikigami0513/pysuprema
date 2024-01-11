@@ -17,9 +17,7 @@ class AccessGroup(AbstractEndpoint):
     def quick_get(self, access_group_id):
         return self.biostar2.get(
             f'{self.endpoint}/{access_group_id}',
-            headers={
-                'bs-session-id': self.biostar2.user.session_id
-            }
+            headers=self.init_headers()
         )
     
     def get(self, access_group, params=''):
