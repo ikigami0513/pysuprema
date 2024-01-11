@@ -12,9 +12,12 @@ class Biostar2:
     __endpoint: Dict[Type, AbstractEndpoint] = None
 
     def __init__(self, **kwargs):
-        self.server_ip = kwargs.pop('server_ip')
+        self.host = kwargs.pop('url')
         self.port = kwargs.pop('port', None)
-        self.host = f'{self.server_ip}:{self.port}' if self.port is not None else f"{self.server_ip}"
+        self.url = f'{self.host}:{self.port}' if self.port is not None else f"{self.host}"
+
+        if not self.url.startswith('http://') or not self.url.startswith('https://'):
+            self.url = 'https://' + self.host
 
         self.__endpoint = {
             Authorization: Authorization(self),
@@ -33,18 +36,18 @@ class Biostar2:
         return self.__endpoint.get(type)
         
     def get(self, endpoint, headers={}, params=None):
-        with requests.get(f"{self.host}/{endpoint}", headers=headers, params=params) as response:
+        with requests.get(f"{self.url}/{endpoint}", headers=headers, params=params) as response:
             return response.json()
 
     def post(self, endpoint, headers={}, data={}):
-        with requests.post(f"{self.host}/{endpoint}", headers=headers, data=data) as response:
+        with requests.post(f"{self.url}/{endpoint}", headers=headers, data=data) as response:
             return response.json()
         
     def put(self, endpoint, headers={}, data={}):
-        with requests.put(f"{self.host}/{endpoint}", headers=headers, data=data) as response:
+        with requests.put(f"{self.url}/{endpoint}", headers=headers, data=data) as response:
             return response.json()
         
     def delete(self, endpoint, headers={}, data={}):
-        with requests.delete(f"{self.host}/{endpoint}", headers=headers, data=data) as response:
+        with requests.delete(f"{self.url}/{endpoint}", headers=headers, data=data) as response:
             return response.json()
         
