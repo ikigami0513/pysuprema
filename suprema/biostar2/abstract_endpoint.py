@@ -18,13 +18,12 @@ class AbstractEndpoint:
             f'{self.endpoint}?{params}',
             headers=self.init_headers()
         )
+        print(data)
         return data.get(self.collection).get('rows')
     
     def get(self, item, params=''):
         queryset = self.get_all(params)
         for query in queryset:
-            print(query)
-            print(type(query))
             if query.get('id') == str(item) or query.get('name') == item:
                 return query
             
