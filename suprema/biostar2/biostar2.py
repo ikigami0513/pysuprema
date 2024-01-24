@@ -24,7 +24,10 @@ class Biostar2:
             UserGroup: UserGroup(self),
             AccessLevel: AccessLevel(self),
             AccessGroup: AccessGroup(self),
-            Card: Card(self)
+            Card: Card(self),
+            User: User(self),
+            DoorGroup: DoorGroup(self),
+            Door: Door(self)
         }
 
         login_id = kwargs.pop('login_id', None)

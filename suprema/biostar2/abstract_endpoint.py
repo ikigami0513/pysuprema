@@ -46,9 +46,6 @@ class AbstractEndpoint:
         )
     
     def delete(self, item):
-        if not isinstance(item, dict):
-            item = self.get(item)
-
         return self.biostar2.delete(
             f'{self.endpoint}?id={item.get("id")}',
             headers=self.init_headers()
