@@ -16,6 +16,9 @@ class Biostar2:
         self.port = kwargs.pop('port', None)
         self.url = f'{self.host}:{self.port}' if self.port is not None else f"{self.host}"
 
+        print(self.host)
+        print(self.url)
+
         self.verify = kwargs.pop('verify', True)
 
         if not self.url.startswith('http://') or not self.url.startswith('https://'):
