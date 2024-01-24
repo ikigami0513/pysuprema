@@ -37,4 +37,6 @@ class UserGroup(AbstractEndpoint):
         )
     
     def delete(self, user_group):
+        if not isinstance(user_group, dict):
+            user_group = self.get(user_group)
         return super().delete(user_group)
