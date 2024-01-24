@@ -23,6 +23,9 @@ class DoorGroup(AbstractEndpoint):
             headers=self.init_headers()
         )
     
+    def get(self, door_group, params=''):
+        return super().get(door_group, params)
+
     def delete(self, door_group):
         return super().delete(door_group)
     
