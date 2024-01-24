@@ -33,7 +33,7 @@ class AbstractEndpoint:
         return self.biostar2.post(
             self.endpoint,
             headers=self.init_headers(),
-            data=json.dumps(data)
+            data=json.dump(data)
         )
     
     def update(self, item, data):
@@ -43,7 +43,7 @@ class AbstractEndpoint:
         return self.biostar2.put(
             f'{self.endpoint}/{item.get("id")}',
             headers=self.init_headers(),
-            data=json.dumps(data)
+            data=json.dump(data)
         )
     
     def delete(self, item):
