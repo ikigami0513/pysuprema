@@ -2,7 +2,7 @@ from suprema.biostar2 import *
 
 class DoorGroup(AbstractEndpoint):
     collection = 'DoorGroupCollection'
-    endpoint = 'api/doors'
+    endpoint = 'api/door_groups'
 
     def create(self, parent_id, depth, name):
         return super().create(
