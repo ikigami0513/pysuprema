@@ -27,6 +27,9 @@ class DoorGroup(AbstractEndpoint):
         return super().get(door_group, params)
 
     def delete(self, door_group):
+        if not isinstance(door_group, dict):
+            door_group = self.get(door_group)
+
         return super().delete(door_group)
     
     def update(self, door_group, name=None, parent_id=None):
