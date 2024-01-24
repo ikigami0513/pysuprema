@@ -50,7 +50,7 @@ class Biostar2:
             return response.json()
         
     def put(self, endpoint, headers={}, data={}):
-        with requests.put(f"{self.url}/{endpoint}", headers=headers, data=data, verify=self.verify) as response:
+        with requests.put(f"{self.url}/{endpoint}", headers=headers, data=(data), verify=self.verify) as response:
             return response.json()
         
     def delete(self, endpoint, headers={}, data={}):
