@@ -16,16 +16,9 @@ class Biostar2:
         self.port = kwargs.pop('port', None)
         self.url = f'{self.host}:{self.port}' if self.port is not None else f"{self.host}"
 
-        print(self.host)
-        print(self.url)
-
         self.verify = kwargs.pop('verify', True)
 
-        print(not self.url.startswith('http://'))
-        print(not self.url.startswith('https://'))
-        print(not self.url.startswith('http://') or not self.url.startswith('https://'))
-
-        if not self.url.startswith('http://') or not self.url.startswith('https://'):
+        if not self.url.startswith('http://') and not self.url.startswith('https://'):
             self.url = 'https://' + self.host
 
         self.__endpoint = {
