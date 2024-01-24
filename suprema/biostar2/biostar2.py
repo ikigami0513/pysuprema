@@ -21,6 +21,10 @@ class Biostar2:
 
         self.verify = kwargs.pop('verify', True)
 
+        print(not self.url.startswith('http://'))
+        print(not self.url.startswith('https://'))
+        print(not self.url.startswith('http://') or not self.url.startswith('https://'))
+
         if not self.url.startswith('http://') or not self.url.startswith('https://'):
             self.url = 'https://' + self.host
 
