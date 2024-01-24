@@ -18,7 +18,8 @@ class Authorization(AbstractEndpoint):
                 }),
                 headers={
                     'Content-Type': "application/json"
-                }
+                },
+                verify=self.biostar2.verify
             ) as response:
                 response.raise_for_status()
                 if response.status_code == 200:
