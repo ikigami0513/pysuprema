@@ -24,6 +24,7 @@ class AbstractEndpoint:
         queryset = self.get_all(params)
         for query in queryset:
             print(query)
+            print(type(query))
             if query.get('id') == str(item) or query.get('name') == item:
                 return query
             
@@ -33,7 +34,7 @@ class AbstractEndpoint:
         return self.biostar2.post(
             self.endpoint,
             headers=self.init_headers(),
-            data=json.dump(data)
+            data=json.dumps(data)
         )
     
     def update(self, item, data):
@@ -43,7 +44,7 @@ class AbstractEndpoint:
         return self.biostar2.put(
             f'{self.endpoint}/{item.get("id")}',
             headers=self.init_headers(),
-            data=json.dump(data)
+            data=json.dumps(data)
         )
     
     def delete(self, item):
