@@ -27,7 +27,8 @@ class Biostar2:
             Card: Card(self),
             User: User(self),
             DoorGroup: DoorGroup(self),
-            Door: Door(self)
+            Door: Door(self),
+            Device: Device(self)
         }
 
         login_id = kwargs.pop('login_id', None)
