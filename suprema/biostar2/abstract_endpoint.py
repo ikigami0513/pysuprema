@@ -32,7 +32,7 @@ class AbstractEndpoint:
         return self.biostar2.post(
             self.endpoint,
             headers=self.init_headers(),
-            data=json.dumps(data)
+            data=data
         )
     
     def update(self, item, data):
