@@ -18,10 +18,14 @@ class DoorGroup(AbstractEndpoint):
         )
     
     def get_all(self, params=''):
-        return self.biostar2.post(
+        data = self.biostar2.post(
             f'{self.endpoint}/search',
             headers=self.init_headers()
         )
+        if data.get(self.collection):
+            return data.get(self.collection).get('rows')
+        else:
+            return None
     
     def get(self, door_group, params=''):
         return super().get(door_group, params)
